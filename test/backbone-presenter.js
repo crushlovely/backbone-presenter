@@ -72,15 +72,25 @@ describe('backbone-presenter', function() {
   });
 
 
-  describe('using a strategy', function() {
+  var baseTests = function() {
+    it('should return an object', function() {
+      data.should.be.type('object');
+    })
+  }
+
+  // presented using a strategy
+  describe('present using a strategy', function() {
 
 
-    describe('whitelist', function() {
+    // using a strategy that has a whitelist defined
+    describe('with a whitelist strategy', function() {
 
       beforeEach( function() {
         data = person.present('whitelisted');
       })
 
+
+      baseTests.call( this );
 
       it('should have only one property', function() {
         data.should.have.keys('firstName');
@@ -89,12 +99,15 @@ describe('backbone-presenter', function() {
     })
 
 
-    describe('blacklist', function() {
+    // using a strategy that has a blacklist defined
+    describe('with a blacklist strategy', function() {
 
       beforeEach( function() {
         data = person.present('blacklisted');
       })
 
+
+      baseTests.call( this );
 
       it('should not have blacklisted property', function() {
         data.should.not.have.property('ssn');
@@ -103,15 +116,18 @@ describe('backbone-presenter', function() {
     })
 
 
-    describe('complex', function() {
+    // using a strategy that has a combination of whitelist, blacklist and customAttributes
+    describe('with a complex strategy', function() {
 
       beforeEach( function() {
         data = person.present('stationery');
       })
 
 
+      baseTests.call( this );
+
       it('has the right properties', function() {
-        data.should.have.keys( [ 'firstName', 'salutation', 'fullNameWithSalutation' ] )
+        data.should.have.keys( [ 'firstName', 'salutation', 'fullNameWithSalutation' ] );
       })
 
       it('should not have omitted properties', function() {
@@ -128,14 +144,15 @@ describe('backbone-presenter', function() {
   })
 
 
-
-  describe('without a strategy', function() {
+  // if the customAttributes property is not defined on the presenter object
+  describe('present without using a strategy', function() {
 
     beforeEach( function() {
-      delete PersonPresenter.strategies;
       data = person.present();
     })
 
+
+    baseTests.call( this );
 
     it('has the right properties', function() {
       var modelKeys = Object.keys( person.toJSON() );
@@ -143,6 +160,47 @@ describe('backbone-presenter', function() {
 
       data.should.have.keys( modelKeys.concat( presenterKeys ) );
     })
+  })
+
+
+  // if the strategies property is not defined on the presenter object
+  describe('without defined strategies', function() {
+
+    beforeEach( function() {
+      delete PersonPresenter.strategies;
+      data = person.present();
+    })
+
+
+    baseTests.call( this );
+
+    it('has the right properties', function() {
+      var modelKeys = Object.keys( person.toJSON() );
+      var presenterKeys = Object.keys( PersonPresenter.customAttributes );
+
+      data.should.have.keys( modelKeys.concat( presenterKeys ) );
+    })
+
+  })
+
+
+  // if the customAttributes property is not defined on the presenter object
+  describe('without defined customAttributes', function() {
+
+    beforeEach( function() {
+      delete PersonPresenter.customAttributes;
+      data = person.present();
+    })
+
+
+    baseTests.call( this );
+
+    it('has the right properties', function() {
+      var modelKeys = Object.keys( person.toJSON() );
+
+      data.should.have.keys( modelKeys );
+    })
+
   })
 
 });
