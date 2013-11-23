@@ -132,6 +132,7 @@ describe('backbone-presenter', function() {
   describe('without a strategy', function() {
 
     beforeEach( function() {
+      delete PersonPresenter.strategies;
       data = person.present();
     })
 
