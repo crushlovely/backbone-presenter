@@ -1,6 +1,6 @@
 # Backbone Presenter
 
-[https://travis-ci.org/createbang/backbone-presenter.png](https://travis-ci.org/createbang/backbone-presenter.png)
+![https://travis-ci.org/createbang/backbone-presenter.png](https://travis-ci.org/createbang/backbone-presenter.png)
 
 A lightweight model wrapper to prepare your data for the view layer.
 
