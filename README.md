@@ -65,6 +65,13 @@ person.presnt('chat') // returns just the whitelisted keys
 
 Extends the `Backbone` global with the constructor `Presenter`.
 
+via npm"
+
+```bash
+$ npm install backbone-presenter
+```
+
+
 ``` javascript
 var PersonPresenter = Backbone.Presenter;
 ```
