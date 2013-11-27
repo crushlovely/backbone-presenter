@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Make your model data presentable.",
   "author": {
-    "name": "Michael Phillips"
+    "name": "Crush & Lovely",
+    "email": "admin@crushlovely.com",
+    "url": "http://crushlovely.com"
   },
   "main": "lib/backbone-presenter.js",
   "dependencies": {
@@ -17,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/createbang/backbone-presenter.git"
+    "url": "git://github.com/crushlovely/backbone-presenter.git"
   },
   "directories": {
     "test": "test"
@@ -26,6 +28,6 @@
     "test": "mocha test/*.js"
   },
   "bugs": {
-    "url": "https://github.com/createbang/backbone-presenter/issues"
+    "url": "https://github.com/crushlovely/backbone-presenter/issues"
   }
 }
