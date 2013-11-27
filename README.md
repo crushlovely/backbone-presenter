@@ -1,12 +1,16 @@
 # Backbone Presenter
 
-![https://travis-ci.org/createbang/backbone-presenter.png](https://travis-ci.org/createbang/backbone-presenter.png)
+![https://travis-ci.org/crushlovely/backbone-presenter.png](https://travis-ci.org/crushlovely/backbone-presenter.png)
 
-A lightweight model wrapper to prepare your data for the view layer.
+A [model-presenter](https://github.com/crushlovely/model-presenter) adapter for Backbone models.
+
+For more information on how to customize your presenter, see the [model-presenter](https://github.com/crushlovely/model-presenter) README.
 
 ## Example
 
 ```js
+var Backbone = require('backbone');
+
 var PersonPresenter = Backbone.Presenter.extend({
 
   customAttributes: {
@@ -65,15 +69,10 @@ person.present('chat') // returns just the whitelisted keys
 
 Extends the `Backbone` global with the constructor `Presenter`.
 
-via npm"
+via npm
 
 ```bash
 $ npm install backbone-presenter
-```
-
-
-``` javascript
-var PersonPresenter = Backbone.Presenter;
 ```
 
 ## Usage
@@ -92,84 +91,9 @@ var Person = Backbone.Model.extend({
 })
 ```
 
+### serialize
 
-Backbone Presenters have two primary attributes.
-
-### attributes
-
-The `attributes` property allows you to specify presentation-only model values.
-
-```js
-var PersonPresenter = Backbone.Presenter.extend({
-
-  customAttributes: {
-    fullName: function() {
-      return this.attributes.firstName + ' ' + this.attributes.lastName;
-    },
-    fullNameAllCaps: function() {
-      return this.customAttribute('fullName').toUpperCase();
-    }
-  }
-
-})
-```
-
-Each attribute is defined as a function.  The returned value will be used as the value of that attribute.  The scope for each function contains two properties:
-
-#### customAttributes
-
-surfaces all properties of the native model (delegates to `model.toJSON()` to generate values).
-
-#### customAttribute
-
-A function that allows access to other custom attributes.  Takes the name of the custom attribute as the argument.
-
-### strategies
-
-The `strategies` object allows you to define specific representation strategies for the presenter.  This lets the developer define a presentation for the model once and easily use it elsewhere in the application.
-
-```js
-var PersonPresenter = Backbone.Presenter.extend({
-
-  customAttributes: {
-    fullName: function() {
-      return this.attributes.firstName + ' ' + this.attributes.lastName;
-    },
-    fullNameAllCaps: function() {
-      return this.customAttribute('fullName').toUpperCase();
-    }
-  },
-
-  strategies: {
-    avatar: {
-      whitelist: ['image', 'username'],
-      customAttributes: ['fullNameAllCaps']
-    },
-    profile: {
-      blacklist: ['ssn'],
-      customAttributes: ['fullName']
-    },
-    chat: {
-      whitelist: ['image', 'username', 'memberSince']
-    }
-  }
-
-})
-```
-
-Each strategy accepts three properties:
-
-#### whitelist
-
-An array of keys to pick from the original model data.
-
-#### blacklist
-
-An array of keys to omit from the original model data.
-
-#### customAttributes
-
-An array of custom attribute keys to add to the resulting object
+Presenters call a method on the presenter class to convert the model into a raw JavaScript object, if one is defined.  Backbone.Presenter defines the serialize method as the result of `model.toJSON()`.
 
 ## Contributing
 
