@@ -10,6 +10,7 @@ For more information on how to customize your presenter, see the [model-presente
 
 ```js
 var Backbone = require('backbone');
+require('backbone-presenter');
 
 var PersonPresenter = Backbone.Presenter.extend({
 
