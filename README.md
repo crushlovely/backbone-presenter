@@ -1,10 +1,10 @@
 # Backbone Presenter
 
-![https://travis-ci.org/createbang/backbone-presenter.png](https://travis-ci.org/createbang/backbone-presenter.png)
+![https://travis-ci.org/crushlovely/backbone-presenter.png](https://travis-ci.org/crushlovely/backbone-presenter.png)
 
-A [model-presenter](https://github.com/createbang/model-presenter) adapter for Backbone models.
+A [model-presenter](https://github.com/crushlovely/model-presenter) adapter for Backbone models.
 
-For more information on how to customize your presenter, see the [model-presenter](https://github.com/createbang/model-presenter) README.
+For more information on how to customize your presenter, see the [model-presenter](https://github.com/crushlovely/model-presenter) README.
 
 ## Example
 
