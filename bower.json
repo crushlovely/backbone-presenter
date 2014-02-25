@@ -1,0 +1,9 @@
+{
+  "name": "backbone-presenter",
+  "version": "0.1.0",
+  "dependencies": {
+    "underscore": "1.5.x",
+    "backbone": "1.1.x",
+    "model-presenter": ">=0.2.3"
+  }
+}
